@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
 import { registerPage } from '../pages/register';
-import { createUser } from '../pages/helper';
+import { createUser } from '../factories/helper';
 
 test.describe('Registration', () => {
 
@@ -14,15 +14,14 @@ test.describe('Registration', () => {
     test('should register a new user succesfully', async ({ page }) => {
 
         const user = createUser();
-
+        const profilePicture = page.getByRole('img').nth(5);
         const register = new registerPage(page);
 
         await register.clickLoginButton()
         await register.clickRegisterButton()
         await register.fillRegistrationForm(user.name, user.email, user.password);
-        await register.submitRegistrationButton();
-        await page.getByRole('img').nth(5).click();
-        await expect(page.getByRole('img').nth(5)).toBeVisible();
+        await profilePicture.click();
+        await expect(profilePicture).toBeVisible();
 
     })
 

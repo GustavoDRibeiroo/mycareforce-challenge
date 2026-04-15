@@ -28,4 +28,8 @@ export class registerPage {
         await this.page.getByRole('link', { name: 'Criar conta' }).click();
     }
 
+    async profilePicture() {
+        await this.page.getByRole('img').nth(5);
+    }
+
 }

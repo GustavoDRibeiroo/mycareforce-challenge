@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { createUser } from '../pages/helper';
+import { createUser } from '../factories/helper';
 import { recoverPage } from '../pages/recover';
 
 test.describe('Recover Password', () => {
@@ -14,12 +14,11 @@ test.describe('Recover Password', () => {
 
         const user = createUser();
         const recover = new recoverPage(page);
-        const email = user.email;
 
         await recover.clickForgotPassword()
-        await recover.fillEmail(email);
+        await recover.fillEmail(user.email);
         await recover.continueButton();
-        await expect(page.getByText(`Enviamos um código para ${email}. Informe o código abaixo para recuperar sua conta.`)).toBeVisible();
+        await expect(page.getByText(`Enviamos um código para ${user.email}. Informe o código abaixo para recuperar sua conta.`)).toBeVisible();
 
     })
 

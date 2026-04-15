@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
 import { faker } from '@faker-js/faker';
-import { createUser } from '../pages/helper';
+import { createUser } from '../factories/helper';
 import { loginPage } from '../pages/login';
 
 test.describe('Login', () => {
@@ -32,7 +32,7 @@ test.describe('Login', () => {
         await login.clickSubmitButton()
         await expect(page.getByText('Assistidos recentemente')).not.toBeVisible();
 
-        await expect(page.getByText('Senha incorreta')).toBeVisible();
+        await expect(page.getByText('Email ou senha incorretos')).toBeVisible();
 
     })
 
