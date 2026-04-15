@@ -20,6 +20,7 @@ test.describe('Registration', () => {
         await register.clickLoginButton()
         await register.clickRegisterButton()
         await register.fillRegistrationForm(user.name, user.email, user.password);
+        await register.submitRegistrationButton();
         await profilePicture.click();
         await expect(profilePicture).toBeVisible();
 
