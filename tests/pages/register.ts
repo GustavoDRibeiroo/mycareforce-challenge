@@ -1,5 +1,4 @@
 import { Page, Locator } from '@playwright/test'
-import { faker } from '@faker-js/faker';
 
 export class registerPage {
 
