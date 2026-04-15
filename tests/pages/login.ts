@@ -20,4 +20,9 @@ export class loginPage {
 
     }
 
+    async clickSubmitButton() {
+        await this.page.locator('button[type="submit"]', { hasText: 'Entrar' }).click()
+
+    }
+
 }

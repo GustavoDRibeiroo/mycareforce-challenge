@@ -28,18 +28,18 @@ test.describe('Registration', () => {
 
     test('should not register a user with an existing email', async ({ page }) => {
 
-        const user = createUser();
+        // const user = createUser();
 
         const register = new registerPage(page);
 
         await register.clickLoginButton()
         await register.clickRegisterButton()
-        await register.fillRegistrationForm(user.name, user.email, user.password);
+        await register.fillRegistrationForm('Usuarioteste1234', 'gustavoteste5@tuamaeaquelaursa.com', 'Teste123@');
         await register.submitRegistrationButton();
 
-        await register.clickRegisterButton()
-        await register.fillRegistrationForm('AnotherUser', user.email, 'AnotherPassword');
-        await register.submitRegistrationButton();
+        // await register.clickRegisterButton()
+        // await register.fillRegistrationForm('AnotherUser', user.email, 'AnotherPassword');
+        // await register.submitRegistrationButton();
 
         await expect(page.getByText('Já existe uma conta com este email')).toBeVisible();
     })
