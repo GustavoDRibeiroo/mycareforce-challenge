@@ -12,8 +12,9 @@ test.describe('Recover Password', () => {
 
     test('should send a code to an valid email', async ({ page }) => {
 
+        const user = createUser();
         const recover = new recoverPage(page);
-        const email = 'gustavoteste5@tuamaeaquelaursa.com'
+        const email = user.email;
 
         await recover.clickForgotPassword()
         await recover.fillEmail(email);

@@ -12,21 +12,23 @@ test.describe('Login', () => {
 
     test('should login with valid credentials', async ({ page }) => {
 
+        const user = createUser();
         const login = new loginPage(page);
         const searchBar = page.getByPlaceholder('Buscar');
 
         await login.clickLoginButton()
-        await login.fillLoginForm('gustavoteste5@tuamaeaquelaursa.com', 'Teste123@')
+        await login.fillLoginForm(user.email, user.password)
         await expect(searchBar).toBeVisible();
 
     })
 
     test('should not login with invalid password', async ({ page }) => {
 
+        const user = createUser();
         const login = new loginPage(page);
 
         await login.clickLoginButton()
-        await login.fillLoginForm('gustavoteste5@tuamaeaquelaursa.com', 'Teste@12345')
+        await login.fillLoginForm(user.email, 'randompassword')
         await login.clickSubmitButton()
         await expect(page.getByText('Assistidos recentemente')).not.toBeVisible();
 
@@ -39,7 +41,7 @@ test.describe('Login', () => {
         const login = new loginPage(page);
 
         await login.clickLoginButton()
-        await login.fillLoginForm('gustavotesteerrado@tuamaeaquelaursa.com', 'Teste@12345')
+        await login.fillLoginForm('randomwrongemail@tuamaeaquelaursa.com', 'Teste@12345')
         await login.clickSubmitButton()
         await expect(page.getByText('Assistidos recentemente')).not.toBeVisible();
 
